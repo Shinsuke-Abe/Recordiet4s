@@ -1,0 +1,17 @@
+@(loginForm: Form[User])
+
+@import helper._
+
+@main("Recordiet") {
+  <h1>Recordiet</h1>
+  
+  <h2>ログイン</h2>
+  
+  @form(routes.Application.login, 'id -> "login") {
+    @inputText(loginForm("mailAddress"))
+    
+    @inputPassword(loginForm("password"))
+    
+    <input type="submit" value="Login">
+  }
+}

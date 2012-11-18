@@ -1,0 +1,8 @@
+# Test data
+
+RECORDIET_USER(hoge):
+   mail_address: hoge@mail.com
+   password: pass1234
+   display_name: hoge
+
+   
