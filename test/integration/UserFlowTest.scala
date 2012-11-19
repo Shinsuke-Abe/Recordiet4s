@@ -3,12 +3,14 @@ package integration
 import org.specs2.mutable.Specification
 import play.api.test._
 import play.api.test.Helpers._
+import fixtures.InitialTestData
 
 class UserFlowTest extends Specification {
   
   "ユーザログインフォーム" should {
     "履歴なし：ログインすると履歴ページに未登録メッセージが表示される" in {
       running(TestServer(3333), HTMLUNIT) {browser =>
+        InitialTestData.insert
         browser.goTo("http://localhost:3333")
         browser.$("input").text("hoge@mail.com", "pass1234")
         browser.submit("#login")

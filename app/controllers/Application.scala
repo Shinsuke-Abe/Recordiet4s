@@ -9,11 +9,12 @@ import models.User
 object Application extends Controller {
   
   val loginForm = Form(
-    mapping(
+    tuple(
       "mailAddress" -> nonEmptyText,
       "password" -> nonEmptyText
-    )((mailAddress, password) => User(None, mailAddress, password))
-     ((user: User) => Some(user.mailAddress, user.password))
+    ) verifying("ユーザ名かパスワードが違います", fields => fields match{
+      case (mailAddress, password) => User.authenticate(mailAddress, password).isDefined
+    })
   )
   
   def index = Action {
